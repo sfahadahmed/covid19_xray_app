@@ -4,7 +4,6 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import model_from_json
 from PIL import Image, ImageOps
-import cv2
 
 @st.cache(allow_output_mutation=True)
 def load_model():
@@ -33,13 +32,17 @@ if(file_image is not None):
 
     if image is not None:
         image = ImageOps.grayscale(image)
-        #image = ImageOps.fit(image, (299,299), Image.ANTIALIAS)
-        #st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
-        st.image(image, use_column_width=False)
 
-        image = np.asarray(image)
-        #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        image = np.expand_dims(image, axis=0)
+        a = np.asarray(image)
+        a = np.expand_dims(a, axis=0)
 
-        st.write(model.predict(image))
+        pred = model.predict(a)
+
+        result = None
+        if(pred[0] == 0):
+            result = 'Patient has COVID'
+        else:
+            result = 'Patient is Normal'
+
+        st.image(image, use_column_width=False, caption=result)
 

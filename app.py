@@ -33,7 +33,7 @@ if(file_image is not None):
 
     if image is not None:
         img_array = np.array(image)
-        img = tf.expand_dims(img, axis=0)
+        img = tf.expand_dims(img_array, axis=0)
 
         st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
 

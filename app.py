@@ -33,7 +33,7 @@ if(file_image is not None):
 
     if image is not None:
         img_array = np.array(image)
-        img_array = np.reshape(299,299,1)
+        img_array = img_array.reshape(299,299,1)
 
         st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
 

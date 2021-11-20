@@ -32,7 +32,7 @@ if(file_image is not None):
     image = ImageOps.grayscale(image)
 
     if image is not None:
-        img_array = np.array(image)
+        img_array = np.array(image)[0]
         #img_array = img_array.flatten()
 
         st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)

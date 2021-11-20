@@ -33,9 +33,9 @@ if(file_image is not None):
 
     if image is not None:
         img_array = np.array(image)
-        img_array = img_array.flatten()
+        #img_array = img_array.flatten()
 
-        st.image(image, caption="This patient is COVID positive (Accuracy 94%)", use_column_width=False)
+        st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
 
         st.write(model.predict(img_array))
 

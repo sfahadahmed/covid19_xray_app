@@ -31,6 +31,7 @@ if(file_image is not None):
     image = Image.open(file_image)
 
     if image is not None:
+        image = ImageOps.fit(image, (299,299), Image.ANTIALIAS)
         image = ImageOps.grayscale(image)
 
         a = np.asarray(image)

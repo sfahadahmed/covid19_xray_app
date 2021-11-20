@@ -1,0 +1,1 @@
+App for identifying COVID or Non-COVID patients using X-ray Images.

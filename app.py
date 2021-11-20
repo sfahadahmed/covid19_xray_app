@@ -37,5 +37,5 @@ if(file_image is not None):
 
         st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
 
-        st.write(model.predict(img_array)
+        st.write(model.predict(img_array))
 

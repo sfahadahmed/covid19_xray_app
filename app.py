@@ -5,7 +5,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import model_from_json
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_model():
     f = open('model.json', 'r')
     json = f.read()

@@ -16,7 +16,7 @@ def load_model():
     return model
 
 # Title
-st.write("# COVID Patient Identification using X-ray Image")
+st.write("# COVID Patient Xray Diagnosis")
 
 # Title image
 st.image(Image.open('title.png'), use_column_width=True)

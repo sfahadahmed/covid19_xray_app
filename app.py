@@ -1,9 +1,10 @@
 # Libraries
 import streamlit as st
-from PIL import Image, ImageOps
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import model_from_json
+from PIL import Image, ImageOps
+import cv2
 
 @st.cache(allow_output_mutation=True)
 def load_model():
@@ -29,13 +30,15 @@ file_image = st.file_uploader("Upload an X-ray image", type=["png", "jpg", "jpeg
 
 if(file_image is not None):
     image = Image.open(file_image)
-    image = ImageOps.grayscale(image)
 
     if image is not None:
-        img_array = np.array(image)
-        img = tf.expand_dims(img_array, axis=0)
+        image = ImageOps.fit(image, (299,299), Image.ANTIALIAS)
+        #st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
+        st.image(image, use_column_width=False)
 
-        st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
+        image = np.asarray(image)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = tf.expand_dims(image, axis=0)
 
-        st.write(model.predict(img_array))
+        st.write(model.predict(image))
 

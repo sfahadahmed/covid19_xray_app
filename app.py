@@ -38,7 +38,7 @@ if(file_image is not None):
 
         image = np.asarray(image)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        image = tf.expand_dims(image, axis=0)
+        image = image.reshape((299,299,1))
 
-        st.write(model.predict(image[0]))
+        st.write(model.predict(image))
 

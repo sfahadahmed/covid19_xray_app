@@ -32,13 +32,14 @@ if(file_image is not None):
     image = Image.open(file_image)
 
     if image is not None:
-        image = ImageOps.fit(image, (299,299), Image.ANTIALIAS)
+        image = ImageOps.grayscale(image)
+        #image = ImageOps.fit(image, (299,299), Image.ANTIALIAS)
         #st.image(image, caption="This patient is COVID <RESULT> (Accuracy <PERCENTAGE>%)", use_column_width=False)
         st.image(image, use_column_width=False)
 
         image = np.asarray(image)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        image = image.reshape((299,299,1))
+        #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        #image = image.reshape((299,299,1))
 
         st.write(model.predict(image))
 

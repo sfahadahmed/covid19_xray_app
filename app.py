@@ -39,12 +39,12 @@ if(file_image is not None):
         pred = model.predict(a)
 
         col1, col2 = st.columns(2)
-        st.image(image, use_column_width=False, caption='Patients Xray Image')
+        col1.image(image, use_column_width=False, caption='Patients Xray Image')
 
         result = None
         if(pred[0] == 0):
             # COVID
-            col1.image(Image.open('result_positive.png'), use_column_width=False)
+            col2.image(Image.open('result_positive.png'), use_column_width=False)
         else:
             # Normal
             col2.image(Image.open('result_negative.png'), use_column_width=False)
